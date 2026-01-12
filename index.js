@@ -1,16 +1,7 @@
-// Add the Calculator APIs
-
-const express = require('express');
-const path = require('path');
+const express = require("express");
 
 const app = express();
-
-app.use(express.static(__dirname))
-app.use(express.json())
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname + '/main.html'));
-});
+app.use(express.json());
 
 const LIMIT = 1000000;
 
@@ -47,13 +38,8 @@ app.post("/add", (req, res) => {
 
   const sum = num1 + num2;
 
-  if (sum > LIMIT) {
-    return res.json({ status: "error", message: "Overflow" });
-  }
-
-  if (sum < -LIMIT) {
-    return res.json({ status: "error", message: "Underflow" });
-  }
+  if (sum > LIMIT) return res.json({ status: "error", message: "Overflow" });
+  if (sum < -LIMIT) return res.json({ status: "error", message: "Underflow" });
 
   res.json({
     status: "success",
@@ -73,13 +59,8 @@ app.post("/sub", (req, res) => {
 
   const difference = num1 - num2;
 
-  if (difference > LIMIT) {
-    return res.json({ status: "error", message: "Overflow" });
-  }
-
-  if (difference < -LIMIT) {
-    return res.json({ status: "error", message: "Underflow" });
-  }
+  if (difference > LIMIT) return res.json({ status: "error", message: "Overflow" });
+  if (difference < -LIMIT) return res.json({ status: "error", message: "Underflow" });
 
   res.json({
     status: "success",
@@ -99,13 +80,8 @@ app.post("/multiply", (req, res) => {
 
   const result = num1 * num2;
 
-  if (result > LIMIT) {
-    return res.json({ status: "error", message: "Overflow" });
-  }
-
-  if (result < -LIMIT) {
-    return res.json({ status: "error", message: "Underflow" });
-  }
+  if (result > LIMIT) return res.json({ status: "error", message: "Overflow" });
+  if (result < -LIMIT) return res.json({ status: "error", message: "Underflow" });
 
   res.json({
     status: "success",
@@ -124,21 +100,13 @@ app.post("/divide", (req, res) => {
   }
 
   if (num2 === 0) {
-    return res.json({
-      status: "error",
-      message: "Cannot divide by zero"
-    });
+    return res.json({ status: "error", message: "Cannot divide by zero" });
   }
 
   const result = num1 / num2;
 
-  if (result > LIMIT) {
-    return res.json({ status: "error", message: "Overflow" });
-  }
-
-  if (result < -LIMIT) {
-    return res.json({ status: "error", message: "Underflow" });
-  }
+  if (result > LIMIT) return res.json({ status: "error", message: "Overflow" });
+  if (result < -LIMIT) return res.json({ status: "error", message: "Underflow" });
 
   res.json({
     status: "success",
@@ -147,10 +115,4 @@ app.post("/divide", (req, res) => {
   });
 });
 
-
-//your code here
 module.exports = app;
-
-
-
-
