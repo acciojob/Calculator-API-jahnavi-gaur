@@ -24,7 +24,7 @@ const validateInput = (num1, num2) => {
 
 /* ---------- Home Route ---------- */
 app.get("/", (req, res) => {
-  res.send("Hello world!");
+  res.send("Hello World");
 });
 
 /* ---------- ADD ---------- */
